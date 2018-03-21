@@ -20,7 +20,6 @@ instbasedir = $(UCB_VLSI_HOME)/install
 bmarks = \
 	spmv \
 	vvadd \
-	saxpy \
 	csaxpy \
 	cmplxmult \
 	vec-vvadd \
