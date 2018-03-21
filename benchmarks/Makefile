@@ -58,7 +58,7 @@ $(bmarks_riscv_dump): %.riscv.dump: %.riscv
 	$(RISCV_OBJDUMP) $< > $@
 
 $(bmarks_riscv_out): %.riscv.out: %.riscv
-	$(RISCV_SIM) $< &> $@
+	$(RISCV_SIM) $< 2> $@
 
 riscv: $(bmarks_riscv_dump)
 run: $(bmarks_riscv_out)
@@ -81,3 +81,5 @@ clean:
 
 veryclean:
 	rm -rf $(objs) $(junk)
+
+.PHONY: $(bmarks_riscv_out)
