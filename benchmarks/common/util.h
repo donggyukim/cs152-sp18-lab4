@@ -4,6 +4,7 @@
 #define __UTIL_H
 
 extern void setStats(int enable);
+extern void error(int i, int got, int expected);
 
 #include <stdint.h>
 
@@ -17,11 +18,19 @@ static int verify(int n, const volatile int* test, const int* verify)
   {
     int t0 = test[i], t1 = test[i+1];
     int v0 = verify[i], v1 = verify[i+1];
-    if (t0 != v0) return i+1;
-    if (t1 != v1) return i+2;
+    if (t0 != v0) {
+      error(i, t0, v0);
+      return i+1;
+    }
+    if (t1 != v1) {
+      error(i+1, t1, v1);
+      return i+2;
+    }
   }
-  if (n % 2 != 0 && test[n-1] != verify[n-1])
+  if (n % 2 != 0 && test[n-1] != verify[n-1]) {
+    error(n-1, test[n-1], verify[n-1]);
     return n;
+  }
   return 0;
 }
 
@@ -34,10 +43,14 @@ static int verifyFloat(int n, const volatile float* test, const float* verify)
     float t0 = test[i], t1 = test[i+1];
     float v0 = verify[i], v1 = verify[i+1];
     int eq1 = t0 == v0, eq2 = t1 == v1;
+    if (!eq1) error(i, (int)t0, (int)v0);
+    if (!eq1) error(i+1, (int)t1, (int)v1);
     if (!(eq1 & eq2)) return i+1; // +eq1;
   }
-  if (n % 2 != 0 && test[n-1] != verify[n-1])
+  if (n % 2 != 0 && test[n-1] != verify[n-1]) {
+    error(i, (int)test[n-1], (int)verify[n-1]);
     return n;
+  }
   return 0;
 }
 
@@ -50,10 +63,14 @@ static int verifyDouble(int n, const volatile double* test, const double* verify
     double t0 = test[i], t1 = test[i+1];
     double v0 = verify[i], v1 = verify[i+1];
     int eq1 = t0 == v0, eq2 = t1 == v1;
+    if (!eq1) error(i, (int)t0, (int)v0);
+    if (!eq2) error(i+1, (int)t1, (int)v1);
     if (!(eq1 & eq2)) return i+1+eq1;
   }
-  if (n % 2 != 0 && test[n-1] != verify[n-1])
+  if (n % 2 != 0 && test[n-1] != verify[n-1]) {
+    error(i, (int)test[n-1], (int)verify[n-1]);
     return n;
+  }
   return 0;
 }
 

@@ -53,6 +53,10 @@ void setStats(int enable)
 #undef READ_CTR
 }
 
+void error(int i, int got, int expected) {
+  printf("index: %d, got: %d, expected: %d\n", i, got, expected);
+}
+
 void __attribute__((noreturn)) tohost_exit(uintptr_t code)
 {
   tohost = (code << 1) | 1;
