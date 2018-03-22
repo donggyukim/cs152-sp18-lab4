@@ -31,5 +31,20 @@ vec_csaxpy:
       VECTOR | FP | W32, \
       0, 0)
 loop:
-    # write your code
+    setvl(t0, a0)
+    vinsert v0, x0, x0        # v0[0] = 0
+    vld v2, 0(a1)             # load cond[i]
+    vsne v1, v2, v0           # set if cond[i] != 0
+    
+    vinsert v3, a2, x0        # v2[0] = a
+    vld v4, 0(a3), v1t        # load x[i]
+    vld v5, 0(a4), v1t        # load y[i]
+    vmadd v5, v3, v4, v5, v1t # y[i] = a * x[i] + y[i]
+    vst v5, 0(a4), v1t        # store y[i]
+	 add a1, a1, t0            # bump cond
+    sll t1, t0, 2             # byte offset
+    add a3, a3, t1            # bump x
+    add a4, a4, t1            # bump y
+    sub a0, a0, t0            # decrement n
+    bnez a0, loop             # loop
     ret
