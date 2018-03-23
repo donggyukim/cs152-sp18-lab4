@@ -21,9 +21,11 @@ bmarks = \
 	spmv \
 	vvadd \
 	csaxpy \
+	dgemm \
 	cmplxmult \
 	vec-vvadd \
 	vec-csaxpy \
+	vec-dgemm \
 
 #--------------------------------------------------------------------
 # Build rules
