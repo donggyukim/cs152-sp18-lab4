@@ -56,8 +56,8 @@ void setStats(int enable)
 #undef READ_CTR
 }
 
-void error(int i, int got, int expected) {
-  printf("index: %d, got: %d, expected: %d\n", i, got, expected);
+void error(int i, long long got, long long expected) {
+  printf("index: %lld, got: %lld, expected: %lld\n", i, got, expected);
 }
 
 void __attribute__((noreturn)) tohost_exit(uintptr_t code)
