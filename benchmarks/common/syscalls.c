@@ -35,7 +35,13 @@ static uintptr_t syscall(uintptr_t which, uint64_t arg0, uint64_t arg1, uint64_t
 
 #define NUM_COUNTERS 5
 static uintptr_t counters[NUM_COUNTERS];
-static char* counter_names[NUM_COUNTERS];
+static char* counter_names[NUM_COUNTERS] = {
+  "cycles      ",
+  "instructions",
+  "FLOPs       ",
+  "D$ accesses ",
+  "D$ misses   "
+};
 
 void setStats(int enable)
 {
@@ -43,7 +49,7 @@ void setStats(int enable)
 #define READ_CTR(name) do { \
     while (i >= NUM_COUNTERS) ; \
     uintptr_t csr = read_csr(name); \
-    if (!enable) { csr -= counters[i]; counter_names[i] = #name; } \
+    if (!enable) { csr -= counters[i]; } \
     counters[i++] = csr; \
   } while (0)
 
