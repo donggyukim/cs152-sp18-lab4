@@ -18,16 +18,17 @@ instbasedir = $(UCB_VLSI_HOME)/install
 #--------------------------------------------------------------------
 
 bmarks = \
-	spmv \
 	vvadd \
 	csaxpy \
 	dgemv \
 	dgemm \
 	cmplxmult \
+	spmv \
 	vec-vvadd \
 	vec-csaxpy \
 	vec-dgemv \
 	vec-dgemm \
+	vec-spmv \
 
 #--------------------------------------------------------------------
 # Build rules
