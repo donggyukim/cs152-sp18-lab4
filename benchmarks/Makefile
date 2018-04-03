@@ -23,11 +23,13 @@ bmarks = \
 	dgemv \
 	dgemm \
 	cmplxmult \
+	imax \
 	spmv \
 	vec-vvadd \
 	vec-csaxpy \
 	vec-dgemv \
 	vec-dgemm \
+	vec-imax \
 	vec-spmv \
 
 #--------------------------------------------------------------------
