@@ -30,6 +30,7 @@ bmarks = \
 	vec-csaxpy \
 	vec-dgemv \
 	vec-dgemm \
+	vec-cmplxmult \
 	vec-imax \
 	vec-spmv \
 	vec-rsort \
