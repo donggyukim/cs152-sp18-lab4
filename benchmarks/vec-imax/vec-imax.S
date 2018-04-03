@@ -50,8 +50,9 @@ reduction_done:
 
 	sll t5, t0, 3      # byte offset
 	add a1, a1, t5     # bump l
-	add t2, t2, t0     # increment loop index 
-	bne t2, a0, loop   # loop
+	add t2, t2, t0     # increment loop index
+	sub a0, a0, t0     # decrement N
+	bnez a0, loop      # loop
 
 	sw t1, 0(a2)       # *i = index of max
 	# TODO: *d = max value
