@@ -36,13 +36,15 @@ loop:
 
 	mv t3, t0
 reduction:
-	srl t3, t3, 1      # t2 / 2
+	srl t3, t3, 1      # t3 / 2
    beqz t3, reduction_done
 	# TODO: v4[i] = v3[t3 + i]
-	# TODO: v3[i] = max(v3[i], v3[t2 + i])
+	setvl(x0, t3) # set VL for reduction
+	# TODO: v3[i] = max(v3[i], v3[t3 + i])
    j reduction
 
 reduction_done:
+	setvl(x0, t0) # recover VL for main loop
 	# TODO: v0 = max(v0, v3)
 	# TODO: v1[i] = v0[i] == v2[i]
 	# TODO: find the index of 1 in v1
@@ -55,5 +57,5 @@ reduction_done:
 	bnez a0, loop      # loop
 
 	sw t1, 0(a2)       # *i = index of max
-	# TODO: *d = max value
+	# TODO: *m = max value
 	ret

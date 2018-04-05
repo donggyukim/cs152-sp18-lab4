@@ -35,9 +35,11 @@ reduction:
 	srl t2, t2, 1       # t2 = t2 / 2 
 	beqz t2, reduction_done
    # TODO: v3[i] = v2[t2 + i]
+	setvl(x0, t2)       # set VL for reduction
 	# TODO: v2 = v2 + v3
 	j reduction
-reduction_done:   
+reduction_done:
+   setvl(x0, t0)       # recover VL for main loop
    # TODO: t3 = v2[0]
 	fmv.d.x f1, t3      # f1 = t3 
 	fadd.d f0, f0, f1   # f0 += reduction
