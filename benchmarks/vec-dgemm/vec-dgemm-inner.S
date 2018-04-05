@@ -65,7 +65,7 @@ vec_dgemm_inner:
       SCALAR | FP | W64)
     
 	 mv  t1, a0 
-	 sll t2, a0, 3             # t1 = n * 8 for byte addresses
+	 sll t2, a0, 3             # t2 = n * 8 for byte addresses
 
 loop_k:
     setvl(t0, t1)             # set VL
