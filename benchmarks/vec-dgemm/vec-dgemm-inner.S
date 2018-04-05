@@ -161,14 +161,14 @@ loop_j_remainder:
     # TODO: load B[j][] to v4
 
     ld s7, 0(s0)              # load A[i][j]
-	 ld s8, 0(s1)              # load A[i][j+1]
-	 ld s9, 0(s2)              # load A[i][j+2]
-	 ld s10, 0(s3)             # load A[i][j+3]
+	 ld s8, 0(s1)              # load A[i+1][j]
+	 ld s9, 0(s2)              # load A[i+2][j]
+	 ld s10, 0(s3)             # load A[i+3][j]
 
     # TODO: v16[0] = A[i][j]
-    # TODO: v17[0] = A[i][j+1]
-    # TODO: v18[0] = A[i][j+2]
-    # TODO: v19[0] = A[i][j+3]
+    # TODO: v17[0] = A[i+1][j]
+    # TODO: v18[0] = A[i+2][j]
+    # TODO: v19[0] = A[i+3][j]
 
 	 # TODO: add your code for reminder
 
