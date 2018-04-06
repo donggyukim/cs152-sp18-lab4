@@ -155,14 +155,15 @@ int putchar(int ch)
 
 void printhex(uint64_t x)
 {
-  char str[17];
+  char str[18];
   int i;
   for (i = 0; i < 16; i++)
   {
     str[15-i] = (x & 0xF) + ((x & 0xF) < 10 ? '0' : 'a'-10);
     x >>= 4;
   }
-  str[16] = 0;
+  str[16] = '\n';
+  str[17] = 0;
 
   printstr(str);
 }
