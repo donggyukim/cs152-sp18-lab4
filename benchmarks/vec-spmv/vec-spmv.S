@@ -9,7 +9,7 @@
 # assumes calling convention:
 # a0 has int r
 # a1 has double* val  <---
-# a2 has double* idx
+# a2 has int* idx
 # a3 has double* x
 # a4 has int* ptr
 # a5 has double* y
